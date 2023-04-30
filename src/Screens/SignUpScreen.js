@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect} from "react";
 
 import { useNavigation } from "@react-navigation/native";
 import { View, ToastAndroid } from "react-native";
 import {
-  NativeBaseProvider,
   Box,
   Center,
   VStack,
@@ -38,6 +37,14 @@ const SignUpScreen = () => {
     await register(body);
     ToastAndroid.show("Request sent successfully!", ToastAndroid.SHORT);
   };
+
+
+  useLayoutEffect(()=>{
+    navigation.setOptions({
+      headerShown: false
+    })
+     },[])
+
   useEffect(() => {
     // testApi()
     if (isError) {
@@ -55,10 +62,11 @@ const SignUpScreen = () => {
   }, [error?.data?.message, error?.error, isError, isSuccess]);
 
   return (
-    <Center w="100%">
+    <Center w="100%" mt="30">
       <Box safeArea p="2" w="90%" maxW="290" py="8">
         <Heading
           size="lg"
+          textAlign="center"
           color="coolGray.800"
           _dark={{
             color: "warmGray.50",
@@ -70,6 +78,7 @@ const SignUpScreen = () => {
         <Heading
           mt="1"
           color="coolGray.600"
+          textAlign="center"
           _dark={{
             color: "warmGray.200",
           }}
@@ -114,11 +123,11 @@ const SignUpScreen = () => {
             />
           </FormControl>
           {isLoading ? (
-            <Button mt="2" colorScheme="indigo">
+            <Button mt="2" colorScheme="indigo" borderRadius={20}>
               Loading
             </Button>
           ) : (
-            <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
+            <Button mt="2" colorScheme="indigo" onPress={handleSubmit} borderRadius={20}>
               Sign Up
             </Button>
           )}

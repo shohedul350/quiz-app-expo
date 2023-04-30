@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useState, useEffect, useLayoutEffect } from "react";
+// import {useDispatch, useSelector} from 'react-redux'
 import { useNavigation } from "@react-navigation/native";
 import { View, ToastAndroid } from "react-native";
 import {
-  NativeBaseProvider,
   Box,
   Center,
   VStack,
@@ -19,14 +18,20 @@ import {
   useCurrentUserMutation,
   useLoginMutation,
 } from "../redux/services/authServiceApi";
-import { setCredentials } from '../redux/features/userSlice'
+// import { setCredentials } from '../redux/features/userSlice'
 
 const SignInScreen = () => {
   const navigation = useNavigation();
-const dispatch = useDispatch()
+// const dispatch = useDispatch()
   const [email, setEmail] = React.useState("emon@gmail.com");
   const [password, setPassword] = React.useState("123456");
 
+
+     useLayoutEffect(()=>{
+     navigation.setOptions({
+       headerShown: false
+     })
+      },[])
   const [login, { error, isLoading, isError, data, success, isSuccess }] =
     useLoginMutation();
 
@@ -81,12 +86,13 @@ const dispatch = useDispatch()
   }, [error?.data?.message, error?.error, isError, isSuccess]);
 
   return (
-    <Center w="100%">
+    <Center w="100%"  mt="40">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
         <Heading
           size="lg"
           fontWeight="600"
           color="coolGray.800"
+          textAlign="center"
           _dark={{
             color: "warmGray.50",
           }}
@@ -98,6 +104,7 @@ const dispatch = useDispatch()
           _dark={{
             color: "warmGray.200",
           }}
+          textAlign="center"
           color="coolGray.600"
           fontWeight="medium"
           size="xs"
@@ -136,11 +143,11 @@ const dispatch = useDispatch()
           </FormControl>
 
           {isLoading ? (
-            <Button mt="2" colorScheme="indigo">
+            <Button mt="2" colorScheme="indigo" borderRadius={20}>
               Loading
             </Button>
           ) : (
-            <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
+            <Button mt="2" colorScheme="indigo" borderRadius={20} onPress={handleSubmit}>
               Sign in
             </Button>
           )}

@@ -1,28 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, Box } from "native-base";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ReduxProvider from './src/redux/ReduxProvider';
 import SignInScreen from './src/Screens/SignInScreen';
 import SignUpScreen from './src/Screens/SignUpScreen';
-import HomeScreen from './src/Screens/HomeScreen';
 import QuizScreen from './src/Screens/QuizScreen'
+import DrawerNavigator from './src/Navigation/DrawerNavigator'
+import { useSelector} from 'react-redux'
+import { selectCurrentAuth} from './src/redux/features/userSlice'
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
-
+  const { user } =  useSelector(selectCurrentAuth)
   return (
-    <ReduxProvider>
-    <NativeBaseProvider>
        <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Navigator 
+      initialRouteName={user ? "Home" : "SignIn"}
+      >
+        <Stack.Screen name="SignIn" 
+        component={SignInScreen} 
+        />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={DrawerNavigator}
+             options={({route}) => ({
+              headerShown: false,
+              headerBackTitleVisible: true,
+        })}
+
+         />
         <Stack.Screen name="Quiz" component={QuizScreen} />
       </Stack.Navigator>
       </NavigationContainer> 
-    </NativeBaseProvider>
-    </ReduxProvider>
+
   );
 }

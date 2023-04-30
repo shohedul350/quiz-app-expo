@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect} from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Octicons } from '@expo/vector-icons'; 
 import {useDispatch, useSelector} from 'react-redux'
 import { selectCurrentAuth, logout, currentUser} from '../redux/features/userSlice'
-import {
-  useCurrentUserMutation,
-} from "../redux/services/authServiceApi";
+// import {
+//   useCurrentUserMutation,
+// } from "../redux/services/authServiceApi";
 
 const HomeScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch()
     const { user } =  useSelector(selectCurrentAuth)
-    
+
     // const [
     //   currentUser,
     //   {
@@ -26,27 +26,6 @@ const HomeScreen = () => {
 
   return (
     <View >
-
-   <Pressable
-      onPress={
-      () => 
-      // currentUser()
-      dispatch(logout())
-      }
-        style={{
-          backgroundColor: "#2364EB",
-          padding: 14,
-          width:120,
-          borderRadius: 25,
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: 30,
-        }}
-      >
-        <Text style={{color:"white",fontWeight:"600",textAlign:"center"}}>Logout</Text>
-      </Pressable>
-
-
       <Text
           style={{
             textAlign: "center",

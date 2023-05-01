@@ -4,8 +4,15 @@
 import React from 'react';
 import {StyleSheet, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import {COLORS, ROUTES} from '../constants';
+import {useDispatch, useSelector} from 'react-redux'
+import { selectCurrentAuth, logout,} from '../redux/features/userSlice'
 
 const SettingsScreen = ({navigation}) => {
+
+  const dispatch = useDispatch()
+  const { user } =  useSelector(selectCurrentAuth)
+
+
   return (
     <SafeAreaView
       style={{
@@ -24,7 +31,11 @@ const SettingsScreen = ({navigation}) => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("SignInScreen")}
+        onPress={() =>{
+          dispatch(logout())
+          // navigation.navigate("SignInScreen")
+        }
+        } 
         style={styles.button}
         activeOpacity={0.8}>
         <Text style={styles.buttonText}>Log out</Text>

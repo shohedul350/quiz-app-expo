@@ -5,13 +5,10 @@ import {COLORS, ROUTES} from '../constants';
 import DrawerNavigator from './DrawerNavigator';
 
 const Stack = createStackNavigator();
-// Navigator, Screen, Group
-
 const AuthNavigator=()=>{
-  console.log(Stack);
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName={ROUTES.LOGIN}>
-      <Stack.Screen
+      {/* <Stack.Screen
         name={ROUTES.FORGOT_PASSWORD}
         component={ForgotPassword}
         options={({route}) => ({
@@ -23,7 +20,7 @@ const AuthNavigator=()=>{
           },
           title: route.params.userId,
         })}
-      />
+      /> */}
       <Stack.Screen
         name={ROUTES.LOGIN}
         component={Login}

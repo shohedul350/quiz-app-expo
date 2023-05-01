@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import {setCredentials} from '../features/userSlice'
+// import {setCredentials} from '../features/userSlice'
 
 const url =  "http://192.168.1.111:5000"
 // const url2 =  "http://jsonplaceholder.typicode.com"

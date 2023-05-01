@@ -1,6 +1,6 @@
 export default {
-  LOGIN: 'Login',
-  REGISTER: 'Register',
+  LOGIN: 'SignIn',
+  REGISTER: 'SignUp',
   FORGOT_PASSWORD: 'Forgot Password',
 
   HOME: 'Home',
@@ -19,4 +19,7 @@ export default {
 
   SETTINGS_DETAIL: 'Settings Detail',
   PROFILE: 'My Profile',
+
+  QUIZ: 'Quiz',
+  QUIZ_RESULT: 'Quiz Result'
 };

@@ -5,6 +5,7 @@ import {COLORS, ROUTES} from '../constants';
 import {Home, Wallet, Notifications, Settings} from '../Screens';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SettingsNavigator from './SettingsNavigator';
+import QuizNavigators from './QuizNavigators';
 // import CustomTabBarButton from '../components/CustomTabBarButton';
 // import CustomTabBar from '../components/CustomTabBar';
 import {useNavigation} from '@react-navigation/native';
@@ -43,7 +44,7 @@ function BottomTabNavigator() {
       })}>
       <Tab.Screen
         name={ROUTES.HOME_TAB}
-        component={Home}
+        component={QuizNavigators}
         // options={{
         //   tabBarButton: props => <CustomTabBarButton route="home" {...props} />,
         // }}

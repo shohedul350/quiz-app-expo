@@ -9,3 +9,6 @@ export {default as Profile} from './ProfileScreen';
 
 export {default as Login} from './SignInScreen';
 export {default as Register} from './SignUpScreen';
+
+export {default as Quiz} from './QuizScreen';
+export {default as QuizResult} from './QuizResultScree';
